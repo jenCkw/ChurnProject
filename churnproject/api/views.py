@@ -1,6 +1,8 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-
+from rest_framework.serializers import Serializer
+from .serializers import CustomerSerializer, PartnerSerializer
+from .models import Customer, Partner
 
 @api_view(['GET'])
 def getRoutes(request):
@@ -37,3 +39,20 @@ def getRoutes(request):
         }
     ]
     return Response(routes)
+
+
+
+@api_view(['GET'])
+def getAllCustomers(request):
+    customer = Customer.objects.all()
+    serializer = CustomerSerializer(customer, many=True)
+    return Response(serializer.data)
+
+
+
+@api_view(["POST"])
+def createCustomer(request):
+    data = request.data
+    customer = Customer.objects.create(name=data['name'], gender=data['gender'], phone=data['phone'], address=data['address'])
+    serializer = CustomerSerializer(customer, many=False)
+    return Response(serializer.data)
