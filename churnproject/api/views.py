@@ -56,3 +56,20 @@ def createCustomer(request):
     customer = Customer.objects.create(name=data['name'], gender=data['gender'], phone=data['phone'], address=data['address'])
     serializer = CustomerSerializer(customer, many=False)
     return Response(serializer.data)
+
+
+@api_view(["PUT"])
+def updateCustomer(request,pk):
+    data = request.data
+    customer = Customer.objects.get(id=pk)
+    serializer = CustomerSerializer(customer, data=data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(["DELETE"])
+def deleteCustomer(request,pk):
+    customer = Customer.objects.get(id=pk)
+    customer.delete()
+    return Response("custumer deleted")
+
