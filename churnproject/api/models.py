@@ -23,3 +23,14 @@ class Customer(models.Model):
 
 
 
+
+class TypeService(models.Model):
+    name = models.TextField()
+    price = models.DecimalField(decimal_places=10, max_digits=10)
+
+
+class Service(models.Model):
+    name = models.TextField()
+    typeService = models.ForeignKey(TypeService,on_delete=models.CASCADE)
+
+
