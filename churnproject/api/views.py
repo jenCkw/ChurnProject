@@ -8,34 +8,34 @@ from .models import Customer, Partner
 def getRoutes(request):
     routes = [
         {
-            'Endpoint': '/client/',
+            'Endpoint': '/customer/',
             'method': 'GET',
             'body':'None',
             'description': 'Returns an array of client'
         },
         {
-            'Endpoint': '/client/id',
+            'Endpoint': '/customer/id',
             'method': 'GET',
             'body':'None',
-            'description': 'Returns an single client'
+            'description': 'Returns an single customer'
         },
         {
-            'Endpoint': '/client/create',
+            'Endpoint': '/customer/create',
             'method': 'POST',
             'body':{'body':''},
-            'description': 'Returns an array of client'
+            'description': 'Returns an array of customer'
         },
         {
-            'Endpoint': '/client/id/update',
+            'Endpoint': '/customer/id/update',
             'method': 'PUT',
             'body':{'body':''},
-            'description': 'creates an existing client with data sent in put req'
+            'description': 'creates an existing customer with data sent in put req'
         },
         {
-            'Endpoint': '/client/id/delete',
+            'Endpoint': '/customer/id/delete',
             'method': 'DELETE',
             'body':'None',
-            'description': 'delete and exiting client'
+            'description': 'delete and exiting customer'
         }
     ]
     return Response(routes)
@@ -58,6 +58,7 @@ def createCustomer(request):
     return Response(serializer.data)
 
 
+
 @api_view(["PUT"])
 def updateCustomer(request,pk):
     data = request.data
@@ -67,9 +68,50 @@ def updateCustomer(request,pk):
         serializer.save()
     return Response(serializer.data)
 
+
+
 @api_view(["DELETE"])
 def deleteCustomer(request,pk):
     customer = Customer.objects.get(id=pk)
     customer.delete()
     return Response("custumer deleted")
 
+
+
+
+# =======partner crud======
+@api_view(["POST"])
+def createPartner(request):
+    data = request.data
+    partner = Partner.objects.create(name=data["name"])
+    serializer = PartnerSerializer(partner, many=False)
+    return Response(serializer.data)
+
+
+
+@api_view(["GET"])
+def getPartner(request):
+    partner = Partner.objects.all()
+    serializer = PartnerSerializer(partner, many=True)
+    return Response(serializer.data)
+
+
+
+
+@api_view(["PUT"])
+def updatePartner(request,pk):
+    data = request.data
+    partner = Partner.objects.get(id=pk)
+    serializer = PartnerSerializer(partner,data=data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+
+
+
+@api_view(["DELETE"])
+def deletePartner(request,pk):
+    partner = Partner.objects.get(id=pk)
+    partner.delete()
+    return Response("partner deleted")
