@@ -84,7 +84,7 @@ DATABASES = {
         'NAME': 'churn',
         'USER': 'root',
         'PASSWORD': '',
-        'HOST': '127.0.g0.1',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
 }

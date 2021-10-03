@@ -8,13 +8,19 @@ class Customer(models.Model):
     address = models.TextField()
     phone = models.TextField()
 
-    def __str__(self):
-        return self.name[0:50]
-
-
 
 class Partner(models.Model):
     name = models.TextField()
 
-    def __str__(self):
-        return self.name[0:50]
+
+class TypeService(models.Model):
+    name = models.TextField()
+    price = models.DecimalField()
+
+
+class Service(models.Model):
+    name = models.TextField()
+    typeService = models.ForeignKey(TypeService,on_delete=models.CASCADE)
+
+    
+
