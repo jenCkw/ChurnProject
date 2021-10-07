@@ -130,7 +130,7 @@ def getAllService(request):
 @api_view(["POST"])
 def createService(request):
     data = request.data
-    service = Service.objects.create(name=data['name'], type=data['type'])
+    service = Service.objects.create(name=data['name'], service_id=data["service_id"])
     serializer = ServiceSerializer(service, many=False)
     return Response(serializer.data)
 
