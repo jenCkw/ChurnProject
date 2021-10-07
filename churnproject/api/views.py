@@ -129,8 +129,9 @@ def getAllService(request):
 
 @api_view(["POST"])
 def createService(request):
-    data = request.data
-    service = Service.objects.create(name=data['name'], service_id=data['service_id'])
+    data = request.dat
+    service = Service.objects.create(nam
+    
     serializer = ServiceSerializer(service, many=False)
     return Response(serializer.data)
 
@@ -146,9 +147,9 @@ def updateService(request,pk):
     return Response(serializer.data)
 
 
-
 @api_view(["DELETE"])
-def deleteService(request,pk):
+def deleteService(request,pk):e=data['name'], service_id=data["service_id"])
+
     service = Service.objects.get(id=pk)
     service.delete()
     return Response("service deleted")

@@ -5,10 +5,6 @@ from django.db import models
 class Partner(models.Model):
     name = models.TextField()
 
-    def __str__(self):
-        return self.name[0:50]
-
-
 
 
 class Customer(models.Model):
@@ -18,11 +14,7 @@ class Customer(models.Model):
     phone = models.TextField()
     partner = models.ForeignKey(Partner, on_delete=models.CASCADE)
     
-    def __str__(self):
-        return self.name[0:50]
-
-
-
+    
 
 class TypeService(models.Model):
     name = models.TextField()
