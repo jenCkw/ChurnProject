@@ -1,0 +1,1 @@
+web: gunicorn churnproject.wsgi --log-file -

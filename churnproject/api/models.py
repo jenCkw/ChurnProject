@@ -18,7 +18,7 @@ class Customer(models.Model):
 
 class TypeService(models.Model):
     name = models.TextField()
-    price = models.DecimalField(decimal_places=10, max_digits=10)
+    price = models.FloatField()
 
 
 class Service(models.Model):
