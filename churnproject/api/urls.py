@@ -11,12 +11,12 @@ urlpatterns = [
     path('partner/create/', views.createPartner),
     path('partner/put/<str:pk>/',views.updatePartner ),
     path('partner/delete/<str:pk>/',views.deletePartner),
-    path('TypeService/', views.getAllTypeService),
-    path('TypeService/create/', views.createTypeService),
-    path('TypeService/put/<str:pk>/',views.updateTypeService ),
-    path('TYpeService/delete/<str:pk>/',views.deleteTypeService ),
-    path('Service/', views.getAllService),
-    path('Service/create/',views.createService),
-    path('Service/put/<str:pk>/',views.updateService),
-    path('Service/delete/<str:pk>/',views.deleteService ) 
+    path('typeservice/', views.getAllTypeService),
+    path('typeservice/create/', views.createTypeService),
+    path('typeservice/put/<str:pk>/',views.updateTypeService ),
+    path('typeservice/delete/<str:pk>/',views.deleteTypeService ),
+    path('service/', views.getAllService),
+    path('service/create/',views.createService),
+    path('service/put/<str:pk>/',views.updateService),
+    path('service/delete/<str:pk>/',views.deleteService ) 
 ]

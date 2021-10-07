@@ -1,0 +1,51 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app{
+  display: flex;
+  background-color: #f4f4f4;
+}
+
+.sidebar{
+  flex: 1;
+  height: calc(100vh - 50px);
+  position: sticky;
+  background-color: #fff;
+  top: 50px;
+}
+
+.menu{
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+}
+
+.workflow{
+  flex: 4;
+  background-color: #f4f4f4;
+}
+
+.links{
+  padding: .5rem;
+  display: flex;
+  cursor: pointer;
+}
+
+.links:hover{
+  background-color: #f4f4f4
+}
+
+.menu_links{
+  margin-left: 10px;
+  margin-top: 3px;
+}
+
+/* home style */
+
+.home{
+  padding: 1rem;
+}
+
