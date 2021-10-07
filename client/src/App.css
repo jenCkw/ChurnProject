@@ -32,6 +32,8 @@
   padding: .5rem;
   display: flex;
   cursor: pointer;
+  list-style: none !important;
+  text-decoration: none !important;
 }
 
 .links:hover{
