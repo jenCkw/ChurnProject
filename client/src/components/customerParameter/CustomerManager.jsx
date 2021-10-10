@@ -90,8 +90,8 @@ function CustomerManager() {
                 columns={colDefs}
                 rows={data}
                 />
-{/* 
-                <MaterialTable
+
+                {/* <MaterialTable
                     columns={colDefs}
                     data={data}        
                     /> */}
