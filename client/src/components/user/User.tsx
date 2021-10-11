@@ -2,12 +2,12 @@ import { useHelloQuery } from "../../generated/graphql"
 
 function User() {
     const {data} = useHelloQuery();
-    console.log(data)
+  
     return (
-        <div className="workflow">
+        <div className="workflow p-4">
             <h1>User</h1>
             <div>
-               
+               <p>{data?.hello}</p>
             </div>
         </div>
     )
