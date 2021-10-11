@@ -11,12 +11,14 @@ import { verify } from "jsonwebtoken";
 import { sendRefreshToken } from "./auth/sendRefreshToken";
 import { createRefreshToken, createAccessToken } from "./auth/auth";
 import { User } from './entity/User'
+import cors from 'cors';
 
 
 
 (async () =>{
     const app = express();
     app.use(express.json());
+    app.use(cors())
     app.use(cookieParser())
     app.get('/', (_req, res) =>{
         res.send("hello world")

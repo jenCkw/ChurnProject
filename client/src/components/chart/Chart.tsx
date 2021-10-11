@@ -9,8 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-
-function Chart({ title, data, dataKey, grid }) {
+function Chart({ title, data, dataKey, grid }:any) {
     return (
         <div className="chart">
             <h3 className="chartTitle">{title}</h3>
