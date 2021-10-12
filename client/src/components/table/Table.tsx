@@ -1,8 +1,7 @@
-import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 
 
-export default function Table({rows, columns}) {
+export default function Table({rows, columns}:any) {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid

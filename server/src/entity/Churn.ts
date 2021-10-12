@@ -8,7 +8,12 @@ export class Data_Churn extends BaseEntity{
 
     @Field()
     @PrimaryColumn()
+    id: number;
+
+    @Field()
+    @Column({unique: true})
     customerID: string;
+
 
     @Field()
     @Column()

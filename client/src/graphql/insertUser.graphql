@@ -1,0 +1,3 @@
+mutation InsertUser($name: String!, $email: String!, $password: String!){
+    insertUser(name:$name, email:$email,password:$password)
+}

@@ -1,4 +1,3 @@
-import React from 'react'
 import HomeIcon from '@mui/icons-material/Home'
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import PersonIcon from '@mui/icons-material/Person';
@@ -8,7 +7,7 @@ import { Link } from 'react-router-dom';
 function SideBar() {
     return (
         <div className="sidebar">
-            <h3 className="text-primary text-center font-weight-bold m-2">churn analytics</h3>
+            <h3 className="text-primary text-center font-weight-bold m-2">ChurnAnalytics</h3>
             <div className="menu">
         
                 <Link className="links" to="/">
