@@ -27,7 +27,7 @@ export class Customer extends BaseEntity {
     address: string;
 
     @Field()
-    @Column('text')
+    @Column({unique:true})
     phone: string;
 
 }

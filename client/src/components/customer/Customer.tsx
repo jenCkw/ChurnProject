@@ -1,11 +1,11 @@
-import axios from 'axios';
-import {useEffect, useState} from 'react'
 import Table from '../table/Table';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import { useCustomerQuery } from '../../generated/graphql';
+import { Link } from 'react-router-dom';
+import AddIcon from '@mui/icons-material/Add';
 
 function Customer() {
 
-    const [customers, setCustmors] = useState([]);
+   const { data, loading,error } = useCustomerQuery();
 
     const columns = [
         {
@@ -14,9 +14,14 @@ function Customer() {
             width: 100
         },
         {
-            field:"name",
-            headerName:"Name",
+            field:"firstname",
+            headerName:"FirstName",
             width: 200
+        },
+        {
+            field:"lastname",
+            headerName:"Lastname",
+            width: 150
         },
         {
             field:"gender",
@@ -36,27 +41,27 @@ function Customer() {
 
     ]
 
-    useEffect(()=>{
-        axios.get('/customer/')
-        .then(res => setCustmors(res.data));
-    },[])
+    if(error) return <div className="workflow p-4 ">error...</div>
 
+    if(loading) return <div className="workflow p-4 ">Loading....</div>
+
+
+  
     return (
         <div className="workflow p-4 ">
            <div className="bg-white p-4 m-2 d-flex justify-content-between">
-               <h4 className="font-weight-bold">Parameter </h4>
+               <h4 className="text-primary font-weight-bold">Customer </h4>
                <div className="" style={{cursor:"pointer"}}>
-                <label style={{cursor:"pointer", backgroundColor:"#f4f4f4", padding:"5px"}}  htmlFor="file">
-                    Excel <ArrowUpwardIcon/>
-                </label>
-                <input type="file" id="file" style={{display:"none"}} />
+               <Link to="#" className="btn bg-primary p-2 text-white" style={{borderRadius:'100px'}}>
+                    <AddIcon/>
+                </Link>
                </div>
               
            </div>
            <div className="p-2 bg-white m-2" >
                <Table
                columns={columns}
-               rows={customers}
+               rows={data?.customers}
                />
            </div>
         </div>

@@ -1,35 +1,32 @@
-import React from 'react';
-import './App.css';
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import Navbar from './components/navbar/Navbar';
-import SideBar from './components/sidebar/SideBar';
-import Login from './components/login/Login';
+import { useState, useEffect } from 'react';
+import { setAccessToken } from './components/authentication/accessToken';
 
-import Customer from './components/customer/Customer';
-import CustomerInfo from './components/customerInfo/CustomerInfo';
-import User from './components/user/User';
-import Home from './components/home/Home';
-
-
+import Routers from "./Route"
 
 function App() {
-  return (
-    <Router>
-      <div>
-        <Navbar/>
-          <Switch>
-            <Route exact path="/login" component={Login}/>
-            <div className="app">
-              <SideBar/>
-              <Route exact path="/" component={Home}/>
-              <Route exact path="/customer" component={Customer}/>
-              <Route exact path="/user" component={User}/>
-              <Route exact path="/parameter" component={CustomerInfo}/>
-            </div>
-          </Switch>
-      </div>
-    </Router>
-  );
-}
+    const [loading, setLoading] = useState(true);
 
-export default App;
+    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
+    useEffect(()=>{
+      fetch('http://localhost:4000/refresh_token',
+      {
+          method:"POST",
+          credentials: "include"
+      }
+      )
+      .then(async x => {
+          const {accessToken} = await x.json()
+          setAccessToken(accessToken)
+          setLoading(false);
+      })
+    },[])
+
+
+    if(loading){
+        return <div>Loading...</div>
+    }
+    return <Routers/>
+    
+    }
+export default App

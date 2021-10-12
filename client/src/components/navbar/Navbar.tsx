@@ -6,7 +6,7 @@ function Navbar() {
     return (
         <nav className="topbar navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-            <img src="bbox.png" alt="" height={50} />
+            <img src="logo.jpg" alt="" height={50} />
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>

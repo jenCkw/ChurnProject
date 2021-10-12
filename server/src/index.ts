@@ -12,13 +12,17 @@ import { sendRefreshToken } from "./auth/sendRefreshToken";
 import { createRefreshToken, createAccessToken } from "./auth/auth";
 import { User } from './entity/User'
 import cors from 'cors';
+import { CustomerResolver } from "./resolvers/CustomerResolver";
 
 
 
 (async () =>{
     const app = express();
     app.use(express.json());
-    app.use(cors())
+    app.use(cors({
+        origin:"http://localhost:3000",
+        credentials: true
+    }))
     app.use(cookieParser())
     app.get('/', (_req, res) =>{
         res.send("hello world")
@@ -64,7 +68,7 @@ import cors from 'cors';
 
     const apolloServer = new ApolloServer({
        schema: await buildSchema({
-           resolvers: [ChurnResolver, UserResolver]
+           resolvers: [ChurnResolver, UserResolver, CustomerResolver]
        }),
        context : ({req: Request, res: Response}) => ({req: Request, res: Response})
     });

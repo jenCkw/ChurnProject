@@ -1,0 +1,10 @@
+query Customer{
+  customers{
+    id
+    firstname
+    lastname
+    gender
+    address
+    phone
+  }
+}
