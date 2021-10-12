@@ -2,6 +2,28 @@ import { useState } from 'react';
 import { useLoginMutation } from '../../generated/graphql';
 import { useHistory } from 'react-router-dom'
 import {  setAccessToken } from '../authentication/accessToken';
+import {Grid, Avatar, Paper, Button, TextField} from '@material-ui/core';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
+
+
+
+// style for the login 
+const paperStyle = {
+    padding: 20,
+    height: '70vh',
+    width: 300,
+    margin: '20px auto'
+}
+
+const textfieldStyle = {
+    margin:'10px'
+}
+
+const avatarStyle = {
+    backgroundColor: '#2f7fad'
+}
+
+
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -14,8 +36,14 @@ function Login() {
 
     return (
         <div className="col-md-4 m-auto" >
-        <div className="card card-body rounded mt-5">
-            <h2 className="text-center font-weight-bold text-primary">Sign In </h2>
+            <Grid>
+                <Paper elevation={10} style={paperStyle}>
+                <Grid item container  justifyContent="center">
+                    <Avatar style={avatarStyle}>
+                        <LockOpenIcon/>
+                    </Avatar>
+               
+                </Grid>
             <form
             onSubmit={async (e)=>{
                 e.preventDefault();
@@ -30,17 +58,35 @@ function Login() {
                 }
                 history.push('/');
             }}
-             className="form" >
-                <div className="form-group">
-                    <input type="email" name="email" value={email} onChange={(e)=>setEmail(e.target.value)} placeholder="Email .." className="form-control rounded"/>
-                </div>
-                <div className="form-group">
-                    <input type="password" name="password" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder="Password " className="form-control rounded"/>
-                </div>
-                <button type="submit" className="btn btn-primary btn-block rounded">Sign in</button>
+            >
+               <TextField 
+                    style={textfieldStyle}
+                    type="email" 
+                    value={email}
+                    onChange={(e)=> setEmail(e.target.value)}
+                    fullWidth 
+                    placeholder="Email address" 
+                    label="Email" 
+                    required
+                    variant="standard"
+                />
+                <TextField 
+                    onChange={(e)=> setPassword(e.target.value)}
+                    type="password" 
+                    fullWidth 
+                    value={password}
+                    placeholder="Password" 
+                    label="Password" 
+                    required
+                    variant="standard"
+                    style={textfieldStyle}
+                />
+               
+               <Button type="submit" style={{marginTop:'20px'}} color="primary" variant="contained" fullWidth>Sign in</Button>
                
             </form>
-        </div>
+            </Paper>
+            </Grid>
     </div>
     )
 }
