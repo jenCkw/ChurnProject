@@ -5,6 +5,6 @@ export const setAccessToken = (s:string) =>{
 }
 
 
-export const getAccessToke = () =>{
+export const getAccessToken = () =>{
     return accessToken;
 }

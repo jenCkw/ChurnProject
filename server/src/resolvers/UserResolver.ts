@@ -4,6 +4,7 @@ import { hash, compare } from 'bcryptjs';
 import { MyContext } from '../interfaces/MyContext';
 import { createAccessToken, createRefreshToken } from '../auth/auth';
 import { getConnection } from 'typeorm';
+import { sendRefreshToken } from '../auth/sendRefreshToken';
 
 
 @ObjectType()
@@ -90,8 +91,7 @@ export class UserResolver{
 
         if(!valid) throw new Error('bad password')
 
-        res.cookie('cid',createRefreshToken(user)
-        ,{httpOnly:true})
+        sendRefreshToken(res, createRefreshToken(user))
         
         return {
             accessToken: createAccessToken(user)

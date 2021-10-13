@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { ApolloProvider} from '@apollo/react-hooks'
-import { getAccessToke } from './components/authentication/accessToken';
+import { getAccessToken } from './components/authentication/accessToken';
 import ApolloClient from 'apollo-boost';
 
 
@@ -10,7 +10,7 @@ import ApolloClient from 'apollo-boost';
 const client:any = new ApolloClient({
   uri:'http://localhost:4000/graphql',
   request: (operation) =>{
-    const accessToken = getAccessToke();
+    const accessToken = getAccessToken();
     if(accessToken){
       operation.setContext({
         headers:{
@@ -25,7 +25,7 @@ const client:any = new ApolloClient({
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-    <App />
+      <App />
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
