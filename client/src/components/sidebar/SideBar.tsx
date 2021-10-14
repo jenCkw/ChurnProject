@@ -7,29 +7,28 @@ import { Link } from 'react-router-dom';
 function SideBar() {
     return (
         <div className="sidebar">
-            <h3 className="text-primary text-center font-weight-bold m-2">ChurnAnalytics</h3>
+            <h3 className="text-primary text-center font-weight-bold m-2 mt-4">ChurnAnalytics</h3>
             <div className="menu">
         
                 <Link className="links" to="/">
                     <HomeIcon color="primary"/>
-                    <p className="menu_links">Home</p>
+                    <p className="menu_links font-weight-bold">Home</p>
                 </Link>
                 
 
-                <Link className="links" to="/customer">
+                <Link className="links font-weight-bold" to="/customer">
                     <AccessibilityNewIcon color="primary"/>
-                    <p className="menu_links">Customer</p>
+                    <p className="menu_links font-weight-bold">Customer</p>
                 </Link>
         
-                <Link to="/parameter" className="links">
-                    
+                <Link to="/parameter" className="links font-weight-bold">
                     <AppsIcon color="primary"/>
-                    <p className="menu_links">Parameter</p>
+                    <p className="menu_links font-weight-bold">Parameter</p>
                 </Link>
             
                 <Link className="links" to="/user">
                     <PersonIcon color="primary"/>
-                    <p className="menu_links">Manage Users</p>
+                    <p className="menu_links font-weight-bold">Manage Users</p>
                 </Link>
             
             </div>
