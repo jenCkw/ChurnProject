@@ -9,6 +9,8 @@ import User from './components/user/User';
 import Home from './components/home/Home';
 import AddUserForm from './components/user/AddUserForm';
 import PrivateRoute from './components/authentication/PrivateRoute';
+import ChurnYes from './components/churn/ChurnYes';
+import ChurnNo from './components/churn/ChurnNo';
 
 
 
@@ -26,6 +28,8 @@ function Routers() {
               <PrivateRoute exact path="/user" component={User}/>
               <PrivateRoute exact path="/parameter" component={CustomerInfo}/>
               <PrivateRoute exact path="/adduser" component={AddUserForm}/>
+              <PrivateRoute exact path='/churn_yes' component={ChurnYes}/>
+              <PrivateRoute exact path='/churn_no' component={ChurnNo}/>
             </div>
           </Switch>
       </div>

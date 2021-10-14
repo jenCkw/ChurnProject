@@ -1,1 +1,1 @@
-![Template Screenshot](jenny_api.png?raw=true "Template Screenshot")
+![Template Screenshot](jenny_brand.png?raw=true "Template Screenshot")

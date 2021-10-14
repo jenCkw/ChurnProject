@@ -18,15 +18,12 @@ import { CustomerResolver } from "./resolvers/CustomerResolver";
 
 (async () =>{
     const app = express();
-    app.use(express.json());
     app.use(cors({
         origin:"http://localhost:3000",
         credentials: true
     }))
+    app.use(express.json());
     app.use(cookieParser())
-    app.get('/', (_req, res) =>{
-        res.send("hello world")
-    })
     await createConnection();
 
     app.post('/refresh_token',async (req,res) => {

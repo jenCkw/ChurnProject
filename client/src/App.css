@@ -1,7 +1,12 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
 .app{
@@ -13,7 +18,7 @@
   flex: 1;
   height: calc(100vh - 50px);
   position: sticky;
-  background-color: #fff;
+  background-color: rgb(1, 18, 32);
   top: 50px;
 }
 
@@ -27,6 +32,20 @@
   flex: 4;
   background-color: #f4f4f4;
 }
+
+
+
+
+.links_card{
+  cursor: pointer;
+  list-style: none !important;
+  text-decoration: none !important;
+}
+
+.card_font{
+  font-family: 'Poppins', sans-serif !important;
+}
+
 
 .links{
   padding: .5rem;
