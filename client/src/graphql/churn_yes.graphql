@@ -1,0 +1,18 @@
+query Churn_yes($churn:String!){
+    churn_yes(churn:$churn){
+    id
+    customerID
+    gender
+    partner
+    seniorCitizen
+    tenure
+    Dependents
+    PhoneService
+    Contract
+    PaperlessBilling
+    PaymentMethod
+    MonthlyCharges
+    TotalCharges
+    churn
+  }
+}

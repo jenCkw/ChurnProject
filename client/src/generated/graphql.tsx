@@ -99,9 +99,15 @@ export type MutationRevokeRefreshTokenArgs = {
 export type Query = {
   __typename?: 'Query';
   churn: Array<Data_Churn>;
+  churn_yes: Array<Data_Churn>;
   customers: Array<Customer>;
   hello: Scalars['String'];
   users: Array<User>;
+};
+
+
+export type QueryChurn_YesArgs = {
+  churn: Scalars['String'];
 };
 
 export type User = {
@@ -115,6 +121,13 @@ export type ChurnQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type ChurnQuery = { __typename?: 'Query', churn: Array<{ __typename?: 'Data_Churn', id: number, customerID: string, gender: string, partner: string, seniorCitizen: number, tenure: number, Dependents: string, PhoneService: string, Contract: string, PaperlessBilling: string, PaymentMethod: string, MonthlyCharges: number, TotalCharges: number, churn: string }> };
+
+export type Churn_YesQueryVariables = Exact<{
+  churn: Scalars['String'];
+}>;
+
+
+export type Churn_YesQuery = { __typename?: 'Query', churn_yes: Array<{ __typename?: 'Data_Churn', id: number, customerID: string, gender: string, partner: string, seniorCitizen: number, tenure: number, Dependents: string, PhoneService: string, Contract: string, PaperlessBilling: string, PaymentMethod: string, MonthlyCharges: number, TotalCharges: number, churn: string }> };
 
 export type CustomerQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -203,6 +216,54 @@ export function useChurnLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Chur
 export type ChurnQueryHookResult = ReturnType<typeof useChurnQuery>;
 export type ChurnLazyQueryHookResult = ReturnType<typeof useChurnLazyQuery>;
 export type ChurnQueryResult = Apollo.QueryResult<ChurnQuery, ChurnQueryVariables>;
+export const Churn_YesDocument = gql`
+    query Churn_yes($churn: String!) {
+  churn_yes(churn: $churn) {
+    id
+    customerID
+    gender
+    partner
+    seniorCitizen
+    tenure
+    Dependents
+    PhoneService
+    Contract
+    PaperlessBilling
+    PaymentMethod
+    MonthlyCharges
+    TotalCharges
+    churn
+  }
+}
+    `;
+
+/**
+ * __useChurn_YesQuery__
+ *
+ * To run a query within a React component, call `useChurn_YesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useChurn_YesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useChurn_YesQuery({
+ *   variables: {
+ *      churn: // value for 'churn'
+ *   },
+ * });
+ */
+export function useChurn_YesQuery(baseOptions: Apollo.QueryHookOptions<Churn_YesQuery, Churn_YesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<Churn_YesQuery, Churn_YesQueryVariables>(Churn_YesDocument, options);
+      }
+export function useChurn_YesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Churn_YesQuery, Churn_YesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<Churn_YesQuery, Churn_YesQueryVariables>(Churn_YesDocument, options);
+        }
+export type Churn_YesQueryHookResult = ReturnType<typeof useChurn_YesQuery>;
+export type Churn_YesLazyQueryHookResult = ReturnType<typeof useChurn_YesLazyQuery>;
+export type Churn_YesQueryResult = Apollo.QueryResult<Churn_YesQuery, Churn_YesQueryVariables>;
 export const CustomerDocument = gql`
     query Customer {
   customers {
