@@ -2,7 +2,9 @@ import CardItem from '../CartItem/CartItem';
 import Chart from '../chart/Chart'
 import { userData } from '../../dummyData'
 import { useChurnQuery } from '../../generated/graphql';
-
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import PersonAddDisabledIcon from '@mui/icons-material/PersonAddDisabled';
+import PersonIcon from '@mui/icons-material/Person';
 
 function Home() {
     const { data } = useChurnQuery({fetchPolicy:'network-only'})
@@ -21,9 +23,24 @@ function Home() {
     return (
         <div className="home workflow">
             <div className="row bg-white p-4 m-2">
-                <CardItem title="Customer" estimations={data?.churn.length}/>
-                <CardItem title="Churn Customer" estimations={data_yes.length}/>
-                <CardItem title="No Churn Customer" estimations={data_no.length}/>
+                <CardItem 
+                title="Customers" 
+                estimations={data?.churn.length} 
+                path="/customer"
+                Icon={PersonIcon}
+                />
+                <CardItem 
+                title="Churn Customers" 
+                estimations={data_yes.length}
+                path="/churn_yes"
+                Icon={PersonAddIcon}
+                />
+                <CardItem 
+                title="No Churn Customers" 
+                estimations={data_no.length}
+                path="/churn_no"
+                Icon={PersonAddDisabledIcon}
+                />
             </div>
             <div className="card bg-white p-4 m-2">
                 <Chart data={userData} title="User Analytics" grid dataKey="Active User"/>
