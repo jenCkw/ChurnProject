@@ -1,12 +1,31 @@
+import { useState} from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { useChurnQuery } from '../../generated/graphql';
 import LocalPrintshopIcon from '@mui/icons-material/LocalPrintshop';
 import generatePDf from "../../services/reportGenerator";
-
+import SearchBar from "material-ui-search-bar";
 
 function CustomerInfo() {
 
     const {data, loading, error} = useChurnQuery({fetchPolicy:"network-only"});
+    const [rows, setRows] = useState(data?.churn);
+    const [searched, setSearched] = useState('');
+
+      //makes search to users data
+      const requestSearch = (searchedVal: string) => {
+        const filteredRows = data?.churn.filter((row) => {
+          return row.customerID.toLowerCase().includes(searchedVal.toLowerCase());
+        });
+        setRows(filteredRows);
+      };
+
+
+      const cancelSearch = () => {
+        setSearched("");
+        requestSearch(searched);
+      };
+
+    
     const columns = [
         {
             field:"id",
@@ -108,7 +127,13 @@ function CustomerInfo() {
             <div className="bg-white p-4 m-2">
                <h5 className="font-weight-bold text-center">Customer Info</h5>
            </div>
-           
+           <div className="bg-white p-4 m-2">
+            <SearchBar
+                    value={searched}
+                    onChange={(searchVal) => requestSearch(searchVal)}
+                    onCancelSearch={() => cancelSearch()}
+            />
+           </div>
            <div className="p-2 bg-white m-2" >
             <div className="m-2 justify-content-end">
                         <button onClick={()=> generatePDf(columnsData,churnsData)} className="btn btn-secondary">
@@ -118,7 +143,7 @@ function CustomerInfo() {
                 </div>
            <div style={{ height: 400, width: '100%' }}>
             <DataGrid
-                rows={data.churn}
+                rows={!rows ? data.churn! : rows!}
                 columns={columns}
                 pageSize={5}
                 rowsPerPageOptions={[5]}
