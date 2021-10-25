@@ -1,9 +1,31 @@
+import { useState} from 'react';
 import { useChurn_YesQuery } from "../../generated/graphql"
 import { DataGrid } from '@mui/x-data-grid';
+import LocalPrintshopIcon from '@mui/icons-material/LocalPrintshop';
+import generatePDf from "../../services/reportGenerator";
+import SearchBar from "material-ui-search-bar";
+
 
 function ChurnNo() {
     const churn = "No";
     const {data, loading, error} = useChurn_YesQuery({variables:{churn:churn}});
+    const [rows, setRows] = useState(data?.churn_yes);
+    const [searched, setSearched] = useState('');
+
+      //makes search to users data
+      const requestSearch = (searchedVal: string) => {
+        const filteredRows = data?.churn_yes.filter((row) => {
+          return row.customerID.toLowerCase().includes(searchedVal.toLowerCase());
+        });
+        setRows(filteredRows);
+      };
+
+
+      const cancelSearch = () => {
+        setSearched("");
+        requestSearch(searched);
+      };
+
     const columns = [
         {
             field:"id",
@@ -72,6 +94,32 @@ function ChurnNo() {
         },
     ]
 
+
+    const columnsData = ["ID", "customerID","Gender","partner","seniorCitizen","tenure","Contract","PaymentMethod","TotalCharges","Churn"]
+
+    const churnsData:any = []
+ 
+
+    const churns = data?.churn_yes.forEach((churn)=>{
+        const churnData = [
+            churn.id,
+            churn.customerID,
+            churn.gender,
+            churn.partner,
+            churn.seniorCitizen,
+            churn.tenure,
+            churn.Contract,
+            churn.PaymentMethod,
+            churn.TotalCharges,
+            churn.churn
+        ]
+        churnsData.push(churnData)
+    })
+
+    console.log(churns)
+    console.log(churnsData)
+
+
     if(!data) return <div className="workflow  p-4"><h1 className="text-center">No Data...</h1></div>
     if(error) return <div className="workflow text-center p-4"><h1 className="text-center">Error... </h1></div>
     if(loading) return <div className="workflow text-center p-4"><h1 className="text-center">Loading...</h1></div>
@@ -84,7 +132,20 @@ function ChurnNo() {
             <div className="bg-white p-4 m-2">
                <h5 className="font-weight-bold text-center">No Churn Customers</h5>
            </div>
+           <div className="bg-white p-4 m-2">
+            <SearchBar
+                    value={searched}
+                    onChange={(searchVal) => requestSearch(searchVal)}
+                    onCancelSearch={() => cancelSearch()}
+            />
+           </div>
            <div className="p-2 bg-white m-2" >
+           <div className="m-2 justify-content-end">
+                <button onClick={()=> generatePDf(columnsData,churnsData)} className="btn btn-secondary">
+                            print {"  "}
+                        <LocalPrintshopIcon style={{cursor:'pointer', float:'right'}} className=" text-primary"/>
+                        </button>
+                </div>
            <div style={{ height: 400, width: '100%' }}>
             <DataGrid
                 rows={data.churn_yes}

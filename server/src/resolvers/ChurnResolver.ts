@@ -1,5 +1,5 @@
 import { Data_Churn } from '../entity/Churn'
-import { Query, Resolver, UseMiddleware, Arg } from 'type-graphql'
+import { Query, Resolver,UseMiddleware , Arg } from 'type-graphql'
 import { isAuth } from '../auth/isAuth';
 
 @Resolver()

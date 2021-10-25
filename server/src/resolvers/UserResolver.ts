@@ -19,7 +19,7 @@ export class UserResolver{
 
     @Query(()=> [User])
     users(){
-        return User.find();
+        return User.find(); // select * from users;
     }
 
     @Mutation(()=>Boolean)
@@ -65,7 +65,7 @@ export class UserResolver{
     ){
 
         try {
-            User.delete({ id })
+            User.delete({ id }) // delete from users where id=id
         } catch (error) {
             console.log(error)
         }
